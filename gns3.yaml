@@ -1,0 +1,31 @@
+version: "3"
+
+networks:
+  local-dhcp:
+    external: false
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.5.0.0/24
+          gateway: 172.5.0.1
+
+services:
+  gns3-server:
+    image: registry.cn-shanghai.aliyuncs.com/ncj/gns3:2.2.17
+    privileged: true
+    networks:
+      - local-dhcp
+    ports:
+      - "3080:3080"
+      - "5000-5050:5000-5050"
+    depends_on:
+      - dhcp-server
+
+  dhcp-server:
+    image: networkboot/dhcpd
+    networks:
+      - local-dhcp
+    init: true
+    command: eth0
+    volumes:
+      - ./data:/data
