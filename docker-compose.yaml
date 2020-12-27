@@ -28,4 +28,4 @@ services:
     init: true
     command: eth0
     volumes:
-      - ./data:/data
+      - ./dhcp-config:/data
