@@ -18,6 +18,8 @@ services:
     ports:
       - "3080:3080" # API Port
       - "5000-5050:5000-5050" # For Telnet
+    volumes:
+      - ./data:/root/GNS3
     depends_on:
       - dhcp-server
 

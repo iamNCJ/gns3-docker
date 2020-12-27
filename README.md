@@ -2,6 +2,9 @@
  Run GNS3 Server inside Docker
 
 ```bash
-docker-compose -f gns3.yaml up -d
+git clone https://github.com/iamNCJ/gns3-docker
+cd gns3-docker
+mkdir data
+docker-compose up -d
 ```
 
